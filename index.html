@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by lossp (http://jsbin.com/pepijup/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+<style id="jsbin-css">
+@font-face {
+  font-family: 'iconfont';  /* project id 298608 */
+  src: url('//at.alicdn.com/t/font_ol15pcwjx1tqehfr.eot');
+  src: url('//at.alicdn.com/t/font_ol15pcwjx1tqehfr.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_ol15pcwjx1tqehfr.woff') format('woff'),
+  url('//at.alicdn.com/t/font_ol15pcwjx1tqehfr.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_ol15pcwjx1tqehfr.svg#iconfont') format('svg');
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:18px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body{
+  font-family: "Helvetica Neue", Helvetica, Arial, "sans serif";
+  font-size: 16px;
+}
+.layout{
+  max-width: 100%;
+}
+.topbar{
+  width: 100%;
+  height: 55px;
+  background-color: rgba(3,3,3,0.5);
+  position:fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+.navigator{
+  width: 1000px;
+  margin: 0 auto;
+}
+.navigator .nav-item{
+  list-style: none;
+  float: right;
+  padding-right: 30px;
+  padding-top: 18px;
+}
+.navigator .homepage{
+  float: left;
+  padding-top: 8px;
+}
+a{
+  text-decoration: none;
+}
+.navigator .homepage>a{
+  color: #fed136;
+  font-size: 30px;
+}
+
+.navigator .nav-item>a{
+  font-size: 18px;
+  color: #fff;
+}
+
+.header{
+
+  height: 800px;
+
+}
+.header .intro-head{
+  color: #fed136;
+  font-size: 50px;
+  font-style: Italic;
+  padding-top: 400px;
+  text-align:center;
+}
+.header .intro-main{
+  color: #fed136;
+  font-size: 80px;
+  font-style: ;
+  text-align: center;
+  text-transform: uppercase;
+}
+.button{
+  text-align: center; 
+  margin-top: 20px;
+}
+.button>a{
+  font-size: 20px;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fed136;
+  color: white;
+}
+.service{
+  margin-top: 150px;
+  text-align: center;
+}
+.service>div>h2{
+  font-size: 40px;
+  padding-top: 100px;
+  text-transform: uppercase;
+}
+.description>h3{
+  font-size: 16px;
+  font-style: Italic;
+  color: #777;
+}
+.text-center{
+  text-align: center;
+}
+.col-md{
+  display: inline-block;
+  width: 23%;
+  margin: 100px 40px;
+}
+.col-md>p{
+  color: #777;
+}
+.small-logo{
+  font-size: 80px;
+  color: rgb(254, 209, 54);
+  line-height: 100px;
+}
+.strange{
+  line-height: 110px;
+}
+.ingredients{
+  background-color: #f7f7f7;
+  padding-bottom: 100px;
+}
+.ingredients>div>h2{
+  font-size: 40px;
+  padding-top: 100px;
+  text-transform: uppercase;
+}
+.ingredients .rows{
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  left: 35px;
+}
+.ingredients>div>ul:after{
+  content:'';
+  display: block;
+  clear: both;
+}
+.ingredients .items>li{
+  list-style: none;
+  height: 280px;
+  width: 300px;
+  float: left;
+  display: inline-block;
+  margin-left: 30px;
+  margin-top: 20px;
+  background-color: white;
+}
+.ingredients .rows>ul{
+  margin-left: -45px;
+}
+img{
+  width: 100%;
+}
+.ingredients .items>li>h3{
+  color: black;
+  margin-top: 25px;
+}
+.list-cover{
+  position: absolute;
+  background-color: rgba(254, 209, 54, 0.7);
+  width: 300px;
+  height: 200px;
+  transform: translate(0,-203px);
+  opacity: 0;
+  transition: all ease .5s;
+}
+.list-cover:hover{
+  opacity: .7;
+}
+.recipe{
+  margin-bottom: 100px;
+}
+.recipe>div>h2{
+  font-size: 40px;
+  padding-top: 100px;
+  text-transform: uppercase;
+}
+.timeline{
+  margin-top: 80px;
+  position: relative;
+}
+.recipe>div>ul>li{
+  list-style: none;
+  width: 100px;
+  height: 100px;
+  border: 10px solid #f1f1f1;
+  border-radius: 100px;
+  margin: 0 auto;
+  position: relative;
+  right: 20px; 
+  background: url(https://s-media-cache-ak0.pinimg.com/736x/2b/6a/4e/2b6a4e8c651229f0c901b7d35859218a.jpg);
+  background-size: cover;
+  margin-top: 100px;
+}
+.left-heading, .left-body{
+  width: 300px;
+  text-align: left;
+  position: relative;
+  right: 400px;
+}
+h4{
+  margin: 0;
+}
+.recipe>div>ul>li:nth-child(2){
+  background: url("https://a.dilcdn.com/bl/wp-content/uploads/sites/8/2013/11/BLT-ranch-pizza-200x200.jpg");
+  background-size: cover;
+}
+.right-heading, .right-body{
+  width: 300px;
+  text-align: right;
+  position: relative;
+  left: 200px;
+}
+.recipe>div>ul>li:nth-child(3){
+  background: url("http://www.meteofan.info/wp-content/uploads/2016/07/xforno-da-esterno-200x200.jpg.pagespeed.ic.U62KvXB3-y.jpg");
+  background-size: cover;
+}
+.recipe .timeline>ul:before{
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: "";
+    width: 2px;
+    background-color: #f1f1f1;
+    margin-left: -19.5px;
+}
+.team{
+  background-color: #f1f1f1;
+}
+.team>div>h2{
+  font-size: 40px;
+  padding-top: 100px;
+  text-transform: uppercase;
+}
+.team-list{
+  width: 1050px;
+  display: block;
+  margin: 0 auto;
+}
+.team-list .photo-frame{
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: 3px solid #fff;
+  overflow: hidden;
+}
+.card{
+  width: 150px;
+  display: inline-block;
+  padding: 100px;
+}
+.card:nth-child(1){
+  float: left;
+}
+.card:nth-child(3){
+  float: right;
+}
+.team-list .logo-button{
+  position: relative;
+  top: 150px;
+  font-size: 30px;
+  color: grey;
+  transition: all ease .5s;
+}
+.team-list .logo-button:hover{
+  color: rgb(254, 209, 54);
+}
+.team:after{
+  content: '';
+  display: block;
+  clear: both;
+  height: 80px;
+}
+.team .team-list .card>a{
+  position: relative;
+  top: 10px;
+}
+
+.contact{
+  width: 1040px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+.contact>div>h2{
+  font-size: 40px;
+  padding-top: 100px;
+  text-transform: uppercase;
+}
+.form-cols{
+  padding: 30px;
+  float: left;
+}
+.form-area{
+  padding: 30px;
+  float: right;
+}
+.form-cols>input{
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  padding: 16px;
+  width: 410px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.form-area>textarea{
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  padding: 16px;
+  width: 440px;
+  height: 170px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form:after{
+  content:'';
+  display: block;
+  clear: both;
+}
+.contact .button{
+  position: relative;
+  right: 20px;
+}
+li{
+  list-style: none;
+}
+.footer{
+  margin: 0;
+  padding: 0;
+  height: 100px;
+  background-color: #f1f1f1;
+}
+
+.left-col, .middle-col, .right-col{
+  width: 33.3333%;
+  display: inline-block;
+}
+.left-col{
+  float: left;
+  padding-top: 43px;
+}
+
+.right-col{
+  float: right; 
+  padding-top: 43px;
+}
+.middle-col{
+  margin: 0 auto;
+}
+.footer .container .rows{
+  text-align: center;
+}
+.middle-col>ul>li, .right-col>ul>li{
+  float: left;
+}
+.middle-col>ul>li{
+  margin: 0;
+  padding: 0;
+  padding-right: 20px;
+}
+.middle-col>ul>li>a{
+  color: grey;
+  font-size: 30px;
+  transition: all ease .5s;
+}
+.logo-buttons:nth-child(3){
+  position: relative;
+  top: -5px;
+}
+.middle-col>ul{
+  margin-left: 95px;
+  padding-left: 80px;
+  padding-top: 35px;
+}
+.right-col>ul>li{
+  padding-left: 35px;
+}
+.footer .middle-col>ul>li>a:hover{
+  color: rgb(254, 209, 54);
+}
+.right-col>ul>li>a{
+  color: black;
+}
+      
+      .carousel{
+          width: 1440px;
+          height: 800px;
+          overflow: hidden;
+      }
+      .carousel ul li{
+          list-style: none;
+      }
+      .carousel a{
+          text-decoration: none;
+          width: 30px;
+          height: 30px;
+          border: 1px solid white;
+          border-radius: 50%;
+          text-align: center;
+          color: white;
+          line-height: 27px;
+      }
+      .carousel img{
+          width: 1440px;
+          height: 800px;
+      }
+      .carousel li{
+          float: left;
+      }
+      .carousel .content{
+          position: relative;
+      }
+      .pre-arrow{
+          left: 10px;
+      }
+      .aft-arrow{
+          right: 10px;
+      }
+      .arrow{
+          position: absolute;
+          top: 380px;
+          margin: 0 10px;
+      }
+      .scrollbar>li{
+          height: 6px;
+          width: 30px;
+          border: 1px solid white;
+          margin: 0 7px;
+          border-radius: 3px;
+          position: relative;
+          top: -20px;
+          right: -10px;
+          opacity: 0.6;
+      }
+      .carousel .active{
+          background-color: white;
+      }
+      .carousel .scrollbar{
+        position: absolute;
+       top: 750px;
+       left: 600px;
+      }
+      .carousel .content:after{
+          content: '';
+          display: block;
+          clear: both;
+      }
+      .carousel .scrollbar:after{
+          content: '';
+          display: block;
+          clear: both;         
+      }
+          .ct-waterfall ul, li, p, div{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+	ul,li{
+		list-style: none;
+	}
+
+    .wf-wrap{
+  	    width: 900px;
+		margin: 0 auto;
+    }
+
+	.ct-waterfall .clearfix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.ct-waterfall .container{
+		position: relative;
+
+	}
+	.ct-waterfall .container .item{
+        position: absolute;
+		padding: 0 0 10px 0;
+		width: 280px;
+		margin: 10px;
+		border: 1px solid #DFDFDF;
+		background: #FFF;
+		opacity: 1;
+		transition: all .8s;
+	}
+	.ct-waterfall .container .item img{
+	    margin: 10px;
+	    width: 260px;
+	}
+	.ct-waterfall .container .item .header{
+		height: 25px;
+	    margin: 0 12px;
+	    border-bottom: 1px solid #DBDBDB;
+	}
+	.ct-waterfall .container .description{
+		font-size: 12px;
+		line-height: 1.8;
+	    margin: 10px 15px 0;
+	    color: #777371;
+	}
+	.ct-waterfall .load{
+		height: 20px;
+	}
+	.ct-waterfall .container .hide{
+		display: none;
+	}
+</style>
+</head>
+<body>
+<div class="layout">
+  
+<div class="topbar">
+ <nav class="navigator clearfix">
+   <div class="homepage">
+     <a href="#">Food Of Summer</a>
+   </div>
+   <div class="nav-collapse">
+     <ul class="nav-bar">
+       <li class="nav-item"><a href="#">Contact</a></li>
+       <li class="nav-item"><a href="#">Team</a></li>
+       <li class="nav-item"><a href="#">Recipe</a></li>
+       <li class="nav-item"><a href="#">Ingredient</a></li>
+       <li class="nav-item"><a href="#">Service</a></li>
+       
+     </ul>
+ </div>
+ </nav>
+ </div>
+  
+  <div class="header">
+    <div class = 'carousel'>
+        <ul class = 'content'>
+            <li data-id = "0"><img src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494242072200&di=93d334b661a55d3399753704e461d83e&imgtype=0&src=http%3A%2F%2Fwww.cmseasy.cn%2Fdemo%2Ffree-template%2Ff151%2Fimages%2Fslide%2Fbanner01.jpg"></li>
+            <li data-id = "1"><img src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494242072200&di=93d334b661a55d3399753704e461d83e&imgtype=0&src=http%3A%2F%2Fwww.cmseasy.cn%2Fdemo%2Ffree-template%2Ff151%2Fimages%2Fslide%2Fbanner01.jpg"></li>
+            <li data-id = "2"><img src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494242072200&di=93d334b661a55d3399753704e461d83e&imgtype=0&src=http%3A%2F%2Fwww.cmseasy.cn%2Fdemo%2Ffree-template%2Ff151%2Fimages%2Fslide%2Fbanner01.jpg"></li>
+            <li data-id = "3"><img src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494242072200&di=93d334b661a55d3399753704e461d83e&imgtype=0&src=http%3A%2F%2Fwww.cmseasy.cn%2Fdemo%2Ffree-template%2Ff151%2Fimages%2Fslide%2Fbanner01.jpg""></li>            
+        </ul>
+        <span><a href = '#' class = 'pre-arrow arrow'><</a></span>
+        <span><a href = '#' class = 'aft-arrow arrow'>></a></span>
+        <div class = 'footbar'>
+            <ul class = 'scrollbar'>
+                <li class = 'signal active'></li>
+                <li class = 'signal'></li>
+                <li class = 'signal'></li>
+                <li class = 'signal'></li>
+            </ul>
+        </div>
+    </div>
+
+  </div>
+  
+  <div class="service">
+    <div class="description">
+      <h2 class="section-heading">Serivce</h2>
+      <h3 class="sub-heading">Lorem ipsum dolor sit amet consectetur.</h3>
+    </div>
+   <div class="rows text-center">
+    <div class="col-md">
+      <span class="small-logo iconfont">&#xe626;</span>
+      <h4 class="service-heading">Food Delivery</h4>
+      <p class="text-muted">Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+      </p>
+    </div>
+    <div class="col-md">
+      <span class="small-logo iconfont strange">&#xe6e4;</span>
+      <h4 class="service-heading">Culinary Art</h4>
+      <p class="text-muted">Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+      </p>
+    </div>  
+    <div class="col-md">
+      <span class="small-logo iconfont">&#xe6fe;</span>
+      <h4 class="service-heading">Order Online</h4>
+      <p class="text-muted">Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+      </p>
+    </div>
+   </div>
+   <div class="ingredients text-center">
+     	 <div class="wf-wrap">
+    <div class="ct-waterfall">
+    	<ul class="container" class="clearfix">
+        
+				<!-- 用于计算 item 宽度和列数，但不展示出来-->
+          <li class = "item hide">用来测定宽度和高度</li>
+    	</ul>
+    	<button class="load">Load</button>
+    </div>
+	</div>
+   </div>   
+  </div>
+    
+  <div class="recipe text-center">
+    <div class="description">
+      <h2 class="section-heading">Recipe</h2>
+      <h3 class="section-subheading">Lorem ipsum dolor sit amet consectetur.</h3>
+    </div>
+    <div class="timeline">
+      <ul class="events">
+        <li class="event">
+         <div class="left-heading">
+           <h4>Dough Making</h4>
+         </div>
+         <div class="left-body">
+           <p>Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+           </p>
+         </div>
+        </li>
+        <li class="event">
+         <div class="right-heading">
+           <h4>The Mix</h4>
+         </div>
+         <div class="right-body">
+           <p>Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+           </p>
+         </div>
+        </li>
+        <li class="event">
+         <div class="left-heading">
+           <h4>Baking</h4>
+         </div>
+         <div class="left-body">
+           <p>Lorem ipsum dolor sit amet, consectetur 
+      adipisicing elit. Minima maxime quam architecto quo inventore 
+      harum ex magni, dicta impedit.
+           </p>
+         </div>
+      </ul>
+    </div>
+  </div>
+    
+  <div class="team text-center">
+    <div class="description">
+      <h2 class="section-heading">Team</h2>
+      <h3 class="section-subheading">Lorem ipsum dolor sit amet consectetur.</h3>
+    </div>
+    <div class="team-list">
+      <div class="card">
+        <div class="photo-frame">
+          <img src="http://www.reluctantgourmet.com/wp-content/uploads/2016/01/i_head_chef.jpg">
+        </div>
+          <p>Chef Burding</p>
+          <a href="#" class="logo-button iconfont">&#xe71f;</a>
+          <a href="#" class="logo-button iconfont">&#xe621;</a>
+      </div>
+      <div class="card">
+        <div class="photo-frame">
+          <img src="http://www.louisianacookin.com/wp-content/uploads/2016/08/2016-CTW-Chef-Roussel-564.jpg">
+        </div>
+          <p>Chef Alice</p>
+          <a href="#" class="logo-button iconfont">&#xe71f;</a>
+          <a href="#" class="logo-button iconfont">&#xe621;</a>
+      </div>
+      <div class="card">
+        <div class="photo-frame">
+          <img src="http://www.louisianacookin.com/wp-content/uploads/2016/08/2016-CTW-Chef-Balderas-564.jpg">
+        </div>
+          <p>Chef Louis</p>
+          <a href="#" class="logo-button iconfont">&#xe71f;</a>
+          <a href="#" class="logo-button iconfont">&#xe621;</a>
+      </div>
+        
+    </div>
+  </div>
+
+   <div class="contact text-center">
+      <div class="description">
+       <h2 class="section-heading">Contact us</h2>
+       <h3 class="section-subheading">Lorem ipsum dolor sit amet consectetur.</h3>
+      </div>
+     <div class="form">
+      <div class="form-cols">
+        <input type="text" class="form-control" placeholder="Your Name">
+        <input type="text" class="form-control" placeholder="Your E-mail">
+        <input type="text" class="form-control" placeholder="Your Phone">
+      </div>
+      <div class="form-area">
+        <textarea name="message" placeholder="Your Message" class="text-area">
+        </textarea>
+      </div>
+     </div>
+     <div class="button">
+       <a href="#">Send Message</a>
+     </div>
+   </div>
+   <div class="footer">
+     <div class="container">
+       <div class="rows">
+         <div class="left-col">
+          <span class="copyright">Copyright © Your Website 2014</span>
+         </div>
+         <div class="middle-col">
+           <ul class="logo-buttons">
+             <li class="logo-button"><a href="#" class="iconfont">&#xe71f;</a></li>
+             <li class="logo-button"><a href="#" class="iconfont">&#xe621;</a></li>
+            
+           </ul>
+         </div>
+         <div class="right-col">
+           <ul class="links">
+             <li class="link"><a href="#">Privacy Policy</a></li>
+             <li class="link"><a href="#">Terms Of Use</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+    
+</div>
+<script src = "https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src="require.js" data-main="config"></script>
+
+
+</body>
+</html>
